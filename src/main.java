@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class main {
 
@@ -21,7 +23,16 @@ public class main {
 	
 	public static void cargarCDRs() {
 		Archivo archivo = new Archivo();
-		archivo.cargarCDRs();
+		List<CDR> cdrs = new ArrayList<CDR>();
+		cdrs = archivo.cargarCDRs();
+		for (CDR cdr : cdrs) 
+		{ 
+			System.out.println(cdr.getNumeroLlamante());
+			System.out.println(cdr.getNumeroLlamado());
+			System.out.println(cdr.getHoraLlamada());
+			System.out.println(cdr.getDuracionLlamada());
+			System.out.println("******************");
+		}
 	}
 	
 	

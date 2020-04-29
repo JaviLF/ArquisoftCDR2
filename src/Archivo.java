@@ -3,6 +3,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Archivo {
 	
@@ -28,7 +30,8 @@ public class Archivo {
 		}
 	}
 	
-	public void cargarCDRs() {
+	public List<CDR> cargarCDRs() {
+		List<CDR> cdrs = new ArrayList<CDR>();
 		try {
 			File f = new File("cdrs.txt");
 			if(f.exists()) {
@@ -44,11 +47,12 @@ public class Archivo {
 					cdr.setHoraLlamada(Integer.parseInt(contacto[2]));
 					cdr.setDuracionLlamada(Float.parseFloat(contacto[3]));
 					
-					System.out.println(cdr.getNumeroLlamante());
-					System.out.println(cdr.getNumeroLlamado());
-					System.out.println(cdr.getHoraLlamada());
-					System.out.println(cdr.getDuracionLlamada());
-					System.out.println("******************");
+					//System.out.println(cdr.getNumeroLlamante());
+					//System.out.println(cdr.getNumeroLlamado());
+					//System.out.println(cdr.getHoraLlamada());
+					//System.out.println(cdr.getDuracionLlamada());
+					//System.out.println("******************");
+					cdrs.add(cdr);
 				}
 				br.close();
 			}
@@ -56,6 +60,7 @@ public class Archivo {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		return cdrs;
 	}
-
+	
 }
