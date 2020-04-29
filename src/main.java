@@ -19,10 +19,16 @@ public class main {
 		archivo.guardarCDR(cdr);
 	}
 	
+	public static void cargarCDRs() {
+		Archivo archivo = new Archivo();
+		archivo.cargarCDRs();
+	}
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		guardarCDR();
+		//guardarCDR();
+		cargarCDRs();
 	}
 
 }
