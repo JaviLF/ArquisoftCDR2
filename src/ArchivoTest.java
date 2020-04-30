@@ -17,12 +17,29 @@ class ArchivoTest {
 		numerosAmigos.add("0000");
 		numerosAmigos.add("1111");
 		Plan planWow = new PlanWow(numerosAmigos);
-		Archivo archive = new Archivo();
+		Almacenamiento archive = new Almacenamiento();
 		archive.guardarPlan(planPre);
 		archive.guardarPlan(planPost);
 		archive.guardarPlan(planWow);
 		List<Plan> planes = archive.cargarPlanes();
 		Assert.assertEquals(3,planes.size());
 	}
-
+	
+	@Test
+	void testForSaveCDRs() {
+		Almacenamiento archivo = new Almacenamiento();
+		CDR cdr = new CDR("1111","2222222",12,2.5);
+		Plan planDeJavier = new PlanPrepago();
+		Linea lineaDeJavier=new Linea("1111","Javier Loayza",planDeJavier);
+		Assert.assertEquals(3.625,cdr.calcularTarifaParaLinea(lineaDeJavier));
+		archivo.guardarCDR(cdr);
+		
+		CDR cdr2 = new CDR("1111","333333",12,2.5);
+		Assert.assertEquals(3.625,cdr.calcularTarifaParaLinea(lineaDeJavier));
+		archivo.guardarCDR(cdr2);
+		
+		List<CDR> CDRs = archivo.cargarCDRs();
+		Assert.assertEquals(2,CDRs.size());
+		
+	}
 }

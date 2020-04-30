@@ -1,19 +1,16 @@
 
 public class Linea {
 	private String numero;
-	private String tipoDePlan;
 	private String nombrePropietario;
 	private Plan plan;
 	
 	public Linea(){
 		numero="0000";
-		tipoDePlan="prepago";
 		nombrePropietario="Pepe";
 		plan=new PlanPrepago();
 	}
-	public Linea(String tipoPlan,String numero,String nombrePropietario,Plan plan) {
+	public Linea(String numero,String nombrePropietario,Plan plan) {
 		this.numero=numero;
-		this.tipoDePlan=tipoPlan;
 		this.nombrePropietario=nombrePropietario;
 		this.plan=plan;
 	}
@@ -23,12 +20,6 @@ public class Linea {
 	}
 	public void setNumero(String numero) {
 		this.numero = numero;
-	}
-	public String getTipoDePlan() {
-		return tipoDePlan;
-	}
-	public void setTipoDePlan(String plan) {
-		this.tipoDePlan = plan;
 	}
 	public String getNombreUsuario() {
 		return nombrePropietario;

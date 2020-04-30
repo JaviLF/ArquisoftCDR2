@@ -4,16 +4,16 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.List;
 
-public class Archivo {
+public class Almacenamiento {
 	public void guardarPlan(Plan plan) {
 		try {
 			File f = new File("planes.txt");
 			FileWriter fw;
 			BufferedWriter bw;
-			
 			LinkedList<String> datosPlan=plan.getDatosPlan();
 			String lineaArchivo = "";
 			
@@ -21,25 +21,44 @@ public class Archivo {
 				fw = new FileWriter(f,true);
 				bw = new BufferedWriter(fw);
 				bw.newLine();
-				
 				for(int i=0;i<datosPlan.size();i++) {
 					lineaArchivo+=(datosPlan.get(i));
 					if(i+1<datosPlan.size())
 						lineaArchivo+="%";
 				}
-				System.out.println(lineaArchivo);
 				bw.write(lineaArchivo);
 			}else {
 				fw = new FileWriter(f);
 				bw = new BufferedWriter(fw);
-				
+			
 				for(int i=0;i<datosPlan.size();i++) {
 					lineaArchivo+=(datosPlan.get(i));
 					if(i+1<datosPlan.size())
 						lineaArchivo+="%";
 				}
-				
 				bw.write(lineaArchivo);
+			}
+			bw.close();
+			fw.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+			
+	public void guardarCDR(CDR cdr) {
+		try {
+			File f = new File("cdrs.txt");
+			FileWriter fw;
+			BufferedWriter bw;
+			if(f.exists()){
+				fw = new FileWriter(f,true);
+				bw = new BufferedWriter(fw);
+				bw.newLine();
+				bw.write(cdr.getNumeroLlamante() + "%" + cdr.getNumeroLlamado() + "%" + cdr.getHoraLlamada() + "%" + cdr.getDuracionLlamada());
+			}else {
+				fw = new FileWriter(f);
+				bw = new BufferedWriter(fw);
+				bw.write(cdr.getNumeroLlamante() + "%" + cdr.getNumeroLlamado() + "%" + cdr.getHoraLlamada() + "%" + cdr.getDuracionLlamada());
 			}
 			bw.close();
 			fw.close(); 
@@ -76,11 +95,44 @@ public class Archivo {
 						planWow.setTarifa(Double.parseDouble(datoPlan[1]));
 						int cantAmigos=Integer.parseInt(datoPlan[2]);
 						for(int i=0;i<cantAmigos;i++) {
-							planWow.addNumeroAmigo(datoPlan[3+i]);
-						}
-						plan=planWow;
+						planWow.addNumeroAmigo(datoPlan[3+i]);
 					}
-					planes.add(plan);
+					plan=planWow;
+				}
+				planes.add(plan);
+				}
+				br.close();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return planes;
+	}
+			
+			
+	public List<CDR> cargarCDRs() {
+		List<CDR> cdrs = new ArrayList<CDR>();
+		try {
+			File f = new File("cdrs.txt");
+			if(f.exists()) {
+				FileReader fr = new FileReader(f);
+				BufferedReader br = new BufferedReader(fr);
+				String linea;
+				while((linea = br.readLine()) != null) {
+					String [] contacto = linea.split("%");
+					CDR cdr = new CDR();
+					
+					cdr.setNumeroLlamante(contacto[0]);
+					cdr.setNumeroLlamado(contacto[1]);
+					cdr.setHoraLlamada(Integer.parseInt(contacto[2]));
+					cdr.setDuracionLlamada(Float.parseFloat(contacto[3]));
+					
+					//System.out.println(cdr.getNumeroLlamante());
+					//System.out.println(cdr.getNumeroLlamado());
+					//System.out.println(cdr.getHoraLlamada());
+					//System.out.println(cdr.getDuracionLlamada());
+					//System.out.println("******************");
+					cdrs.add(cdr);
 				}
 				br.close();
 			}
@@ -88,6 +140,7 @@ public class Archivo {
 		} catch (Exception e) {
 			System.out.println(e);
 		}
-		return planes;
+		return cdrs;
 	}
+
 }
