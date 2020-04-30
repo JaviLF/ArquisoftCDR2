@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class PlanPrepago implements Plan{
 	//propiedades plan
@@ -19,6 +22,25 @@ public class PlanPrepago implements Plan{
 				tarifaSegunHora= tarifaHorarioReducido;
 		}
 		return tarifaSegunHora;
+	}
+	
+	public void setTarifaHorarioNormal(double tarifaHorarioNormal) {
+		this.tarifaHorarioNormal=tarifaHorarioNormal;
+	}
+	public void setTarifaHorarioReducido(double tarifaHorarioReducido) {
+		this.tarifaHorarioReducido=tarifaHorarioReducido;
+	}
+	public void setTarifaHorarioSuperReducido(double tarifaHorarioSuperReducido) {
+		this.tarifaHorarioSuperReducido=tarifaHorarioSuperReducido;
+	}
+	
+	public LinkedList<String> getDatosPlan(){
+		LinkedList<String> datosPlan = new LinkedList<String>();
+		datosPlan.add("prepago");
+		datosPlan.add(String.valueOf(tarifaHorarioNormal));
+		datosPlan.add(String.valueOf(tarifaHorarioReducido));
+		datosPlan.add(String.valueOf(tarifaHorarioSuperReducido));
+		return datosPlan;
 	}
 	
 }

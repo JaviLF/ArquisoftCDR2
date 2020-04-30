@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class PlanWow implements Plan{
@@ -25,4 +26,22 @@ public class PlanWow implements Plan{
 		return (numerosAmigos.contains(numero));
 	}
 	
+	public void addNumeroAmigo(String numero) {
+		if(this.numerosAmigos.size()<3)
+			this.numerosAmigos.add(numero);
+	}
+	public void setTarifa(double tarifa) {
+		this.tarifa=tarifa;
+	}
+	
+	public LinkedList<String> getDatosPlan(){
+		LinkedList<String> datosPlan = new LinkedList<String>();
+		datosPlan.add("wow");
+		datosPlan.add(String.valueOf(tarifa));
+		datosPlan.add(String.valueOf(numerosAmigos.size()));
+		for(int i=0;i<numerosAmigos.size();i++) {
+			datosPlan.add(numerosAmigos.get(i));
+		}
+		return datosPlan;
+	}
 }

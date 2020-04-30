@@ -50,7 +50,7 @@ public class CDRTest {
 	@Test
 	public void testForCalculateTarifaPrepago() {
 		Plan planDeJavier = new PlanPrepago();
-		Linea lineaDeJavier=new Linea("prepago","1111","Javier Loayza",planDeJavier);
+		Linea lineaDeJavier=new Linea("1111","Javier Loayza",planDeJavier);
 		CDR llamada1 = new CDR("1111","0000",5,2.5);
 		Assert.assertEquals(1.75,llamada1.calcularTarifaParaLinea(lineaDeJavier));
 		llamada1.setHoraLlamada(8);
@@ -61,7 +61,7 @@ public class CDRTest {
 	@Test
 	public void testForCalculateTarifaPostpago() {
 		Plan planDeHenry = new PlanPostpago();
-		Linea lineaDeHenry=new Linea("postpago","1111","Henry Torrico",planDeHenry);
+		Linea lineaDeHenry=new Linea("1111","Henry Torrico",planDeHenry);
 		CDR llamada1 = new CDR("1111","0000",22,2.5);
 		Assert.assertEquals(2.475,llamada1.calcularTarifaParaLinea(lineaDeHenry));
 	}
@@ -70,11 +70,12 @@ public class CDRTest {
 		List<String> numerosAmigos = new ArrayList<String>();
 		numerosAmigos.add("0000");
 		Plan planDeSergio = new PlanWow(numerosAmigos);
-		Linea lineaDeSergio=new Linea("wow","1111","Sergio Rivera",planDeSergio);
+		Linea lineaDeSergio=new Linea("1111","Sergio Rivera",planDeSergio);
 		CDR llamada1 = new CDR("1111","0000",22,2.5);
 		Assert.assertEquals(0.0,llamada1.calcularTarifaParaLinea(lineaDeSergio));
 		llamada1.setNumeroLlamado("3333");
 		Assert.assertEquals(2.475,llamada1.calcularTarifaParaLinea(lineaDeSergio));
 	}
+
 
 }
