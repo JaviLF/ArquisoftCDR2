@@ -75,9 +75,11 @@ public class Almacenamiento {
 				FileReader fr = new FileReader(f);
 				BufferedReader br = new BufferedReader(fr);
 				String linea;
+				Plan plan = null;
 				while((linea = br.readLine()) != null) {
 					String [] datoPlan = linea.split("%");
-					Plan plan = null;
+					//Plan plan = null;
+					//System.out.println(datoPlan[0]);		
 					if(datoPlan[0]=="prepago") {
 						PlanPrepago planPre=new PlanPrepago();
 						planPre.setTarifaHorarioNormal(Double.parseDouble(datoPlan[1]));
@@ -94,12 +96,14 @@ public class Almacenamiento {
 						PlanWow planWow=new PlanWow();
 						planWow.setTarifa(Double.parseDouble(datoPlan[1]));
 						int cantAmigos=Integer.parseInt(datoPlan[2]);
-						for(int i=0;i<cantAmigos;i++) {
-						planWow.addNumeroAmigo(datoPlan[3+i]);
+							for(int i=0;i<cantAmigos;i++) {
+								planWow.addNumeroAmigo(datoPlan[3+i]);
+							}
+						plan=planWow;
 					}
-					plan=planWow;
-				}
-				planes.add(plan);
+					//System.out.println(plan.getDatosPlan().get(0));
+				
+					planes.add(plan);
 				}
 				br.close();
 			}
