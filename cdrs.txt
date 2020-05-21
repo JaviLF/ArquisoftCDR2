@@ -1,0 +1,5 @@
+NumeroLlamante%NumeroLlamado%HoraLlamada%DuracionLlamada%Tarifa
+1111%2222222%12%2.5%3.625
+1111%333333%12%2.5%0.0
+1111%2222222%12%2.5%3.625
+1111%333333%12%2.5%0.0
