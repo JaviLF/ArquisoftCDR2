@@ -17,7 +17,7 @@ class ArchivoTest {
 		numerosAmigos.add("0000");
 		numerosAmigos.add("1111");
 		Plan planWow = new PlanWow(numerosAmigos);
-		Almacenamiento archive = new Almacenamiento();
+		Almacenamiento archive = new AlmacenamientoArchivosTexto();
 		archive.guardarPlan(planPre);
 		archive.guardarPlan(planPost);
 		archive.guardarPlan(planWow);
@@ -28,7 +28,7 @@ class ArchivoTest {
 	
 	@Test
 	void testForSaveCDRs() {
-		Almacenamiento archivo = new Almacenamiento();
+		Almacenamiento archivo = new AlmacenamientoArchivosTexto();
 		CDR cdr = new CDR("1111","2222222",12,2.5);
 		Plan planDeJavier = new PlanPrepago();
 		Linea lineaDeJavier=new Linea("1111","Javier Loayza",planDeJavier);

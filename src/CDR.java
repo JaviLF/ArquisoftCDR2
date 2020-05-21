@@ -50,4 +50,7 @@ public class CDR {
 	public String getNumeroLlamado() {
 		return numeroLlamado;
 	}
+	public double getTarifa() {
+		return this.tarifa;
+	}
 }
