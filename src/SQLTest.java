@@ -1,4 +1,8 @@
+import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,5 +20,29 @@ class SQLTest {
 		//alm.guardarCDR(cdr);
 		alm.cargarCDRs();
 	}
+	
+	@Test
+	void testCreatePlanesTable() {
+		Almacenamiento alm=new AlmacenamientoSQL();
+		Plan wow = new PlanWow();
+		//alm.guardarPlan(wow);
+	}
+	
+	@Test
+	void testGuardarPlanDTOaPlanes() {
+		Almacenamiento alm=new AlmacenamientoSQL();
+		PlanDTO dto = new PlanDTO("PREPAGO","HorarioReducido+HorarioNormal+HorarioSuperReducido","1.45+0.95+0.70");
+		alm.guardarPlan(dto);
+		assertNull("Llego a Guardar 36 testGuardarPlanDTO", null);
+	}
+	
+	/*
+	@Test
+	void testCargarPlanes() {
+		Almacenamiento alm=new AlmacenamientoSQL();
+		//Plan wow = new PlanWow();
+		//alm.guardarPlan(wow);
+	}
+	*/
 	
 }

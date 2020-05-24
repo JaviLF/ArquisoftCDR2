@@ -149,4 +149,10 @@ public class AlmacenamientoArchivosTexto implements Almacenamiento{
 		return cdrs;
 	}
 
+	@Override
+	public void guardarPlan(PlanDTO plan) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

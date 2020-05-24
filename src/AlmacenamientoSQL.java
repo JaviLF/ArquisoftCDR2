@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlmacenamientoSQL implements Almacenamiento{
+	
 	public void connect() {
 		Connection c = null;
 	      
@@ -15,6 +16,7 @@ public class AlmacenamientoSQL implements Almacenamiento{
 	      }
 	      System.out.println("Opened database successfully");
 	}
+	
 	public void createCDRTable() {
 		Connection c = null;
 	      Statement stmt = null;
@@ -41,12 +43,35 @@ public class AlmacenamientoSQL implements Almacenamiento{
 	      }
 	      System.out.println("Table created successfully");
 	}
-	public void guardarPlan(Plan plan) {
-		
+	
+	public void createPlanesTable() {
+		Connection c = null;
+	      Statement stmt = null;
+	      
+	      try {
+	         Class.forName("org.sqlite.JDBC");
+	         c = DriverManager.getConnection("jdbc:sqlite:test.db");
+	         System.out.println("Opened database successfully");
+
+	         stmt = c.createStatement();
+	         String sql = "CREATE TABLE PLANES " +
+	                        "(ID INT PRIMARY KEY     NOT NULL," +
+	                        " NOMBRE	TEXT  		NOT NULL, " + 
+	                        " CARACTERISTICA		TEXT  		NOT NULL, " + 
+	                        " PROPIAS		INT     	NOT NULL)"; 
+	         stmt.executeUpdate(sql);
+	         stmt.close();
+	         c.close();
+	      } catch ( Exception e ) {
+	         System.err.println( "Exception in 66 createPlanesTable(), " + e.getClass().getName() + ": " + e.getMessage() );
+	         System.exit(0);
+	      }
+	      System.out.println("Table created successfully");
 	}
-	public void guardarCDR(CDR cdr) {
+	
+	public void guardarPlan(PlanDTO dto) {
 		this.connect();
-		this.createCDRTable();
+		//this.createPlanesTable();
 		Connection c = null;
 	      Statement stmt = null;
 	      
@@ -57,23 +82,19 @@ public class AlmacenamientoSQL implements Almacenamiento{
 	         System.out.println("Opened database successfully");
 
 	         stmt = c.createStatement();
-	         String sql = "INSERT INTO CDR (ID,NUMEROLLAMANTE,NUMEROLLAMADO,HORALLAMADA,DURACIONLLAMADA,TARIFA) " +
-	                        "VALUES (1,"+cdr.getNumeroLlamante()+","+cdr.getNumeroLlamado()+","+cdr.getHoraLlamada()
-	                        +","+cdr.getDuracionLlamada()+","+cdr.getTarifa()+");";
+	         
+	         String sql = "INSERT INTO PLANES (ID,NOMBRE,CARACTERISTICA,PROPIAS) " + "VALUES ('1','"+ dto.getNombre() + "','" + dto.getCaracteristica() + "'," /*+ dto.getPropias()*/ + '1' + ");" ;
 	         stmt.executeUpdate(sql);
 	         stmt.close();
 	         c.commit();
 	         c.close();
 	      } catch ( Exception e ) {
-	         System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	         System.err.println("Exception in 95 guardarPlan(), " + e.getClass().getName() + ": " + e.getMessage() );
 	         System.exit(0);
 	      }
 	      System.out.println("Records created successfully");
 	}
-	public List<Plan> cargarPlanes(){
-		List<Plan> planes = new ArrayList<Plan>();
-		return planes;
-	}
+	
 	public List<CDR> cargarCDRs(){
 		List<CDR> CDRs = new ArrayList<CDR>();
 		
@@ -115,4 +136,60 @@ public class AlmacenamientoSQL implements Almacenamiento{
 		   
 		return CDRs;
 	}
+	
+	public List<Plan> cargarPlanes(){
+List<CDR> CDRs = new ArrayList<CDR>();
+		
+		Connection c = null;
+		   Statement stmt = null;
+		   try {
+		      Class.forName("org.sqlite.JDBC");
+		      c = DriverManager.getConnection("jdbc:sqlite:test.db");
+		      c.setAutoCommit(false);
+		      System.out.println("Opened database successfully");
+
+		      stmt = c.createStatement();
+		      ResultSet rs = stmt.executeQuery( "SELECT * FROM PLANES;" );
+		      
+		      while ( rs.next() ) {
+		         int id = rs.getInt("id");
+		         String  name = rs.getString("NUMEROLLAMANTE");
+		         String  name2 = rs.getString("NUMEROLLAMADO");
+		         int age  = rs.getInt("HORALLAMADA");
+		         double  address = rs.getDouble("DURACIONLLAMADA");
+		         double salary = rs.getDouble("TARIFA");
+		         
+		         System.out.println( "ID = " + id );
+		         System.out.println( "NUMEROLLAMANTE = " + name );
+		         System.out.println( "NUMEROLLAMADO = " + name2 );
+		         System.out.println( "HORALLAMADA = " + age );
+		         System.out.println( "DURACIONLLAMADA = " + address );
+		         System.out.println( "TARIFA = " + salary );
+		         System.out.println();
+		      }
+		      rs.close();
+		      stmt.close();
+		      c.close();
+		   } catch ( Exception e ) {
+		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		      System.exit(0);
+		   }
+		   System.out.println("Operation done successfully");
+		   
+		return null;
+
+	}
+
+	@Override
+	public void guardarCDR(CDR cdr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void guardarPlan(Plan plan) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
