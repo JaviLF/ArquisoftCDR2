@@ -36,13 +36,15 @@ class SQLTest {
 		assertNull("Llego a Guardar 36 testGuardarPlanDTO", null);
 	}
 	
-	/*
+	
 	@Test
 	void testCargarPlanes() {
 		Almacenamiento alm=new AlmacenamientoSQL();
 		//Plan wow = new PlanWow();
 		//alm.guardarPlan(wow);
+		assertNull("Llego a Cargar 45 testCargarPlanes", alm.cargarPlanes());
+		
 	}
-	*/
+	
 	
 }

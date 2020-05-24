@@ -138,7 +138,7 @@ public class AlmacenamientoSQL implements Almacenamiento{
 	}
 	
 	public List<Plan> cargarPlanes(){
-List<CDR> CDRs = new ArrayList<CDR>();
+		List<Plan> planes = new ArrayList<Plan>();
 		
 		Connection c = null;
 		   Statement stmt = null;
@@ -153,18 +153,13 @@ List<CDR> CDRs = new ArrayList<CDR>();
 		      
 		      while ( rs.next() ) {
 		         int id = rs.getInt("id");
-		         String  name = rs.getString("NUMEROLLAMANTE");
-		         String  name2 = rs.getString("NUMEROLLAMADO");
-		         int age  = rs.getInt("HORALLAMADA");
-		         double  address = rs.getDouble("DURACIONLLAMADA");
-		         double salary = rs.getDouble("TARIFA");
-		         
+		         String  name = rs.getString("NOMBRE");
+		         String  characteristic = rs.getString("CARACTERISTICA");
+		         int propias  = rs.getInt("PROPIAS"); 
 		         System.out.println( "ID = " + id );
-		         System.out.println( "NUMEROLLAMANTE = " + name );
-		         System.out.println( "NUMEROLLAMADO = " + name2 );
-		         System.out.println( "HORALLAMADA = " + age );
-		         System.out.println( "DURACIONLLAMADA = " + address );
-		         System.out.println( "TARIFA = " + salary );
+		         System.out.println( "NOMBRE = " + name );
+		         System.out.println( "CARACTERISTICA = " + characteristic );
+		         System.out.println( "PROPIAS = " + propias );
 		         System.out.println();
 		      }
 		      rs.close();
