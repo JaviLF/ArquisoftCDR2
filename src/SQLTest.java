@@ -10,6 +10,7 @@ import junit.framework.Assert;
 
 class SQLTest {
 
+	/*
 	@Test
 	void test() {
 		Almacenamiento alm=new AlmacenamientoSQL();
@@ -18,23 +19,29 @@ class SQLTest {
 		Linea lineaDeJavier=new Linea("1111","Javier Loayza",planDeJavier);
 		Assert.assertEquals(3.625,cdr.calcularTarifaParaLinea(lineaDeJavier));
 		//alm.guardarCDR(cdr);
-		alm.cargarCDRs();
+		//alm.cargarCDRs();
 	}
+	*/
 	
+	/*
 	@Test
 	void testCreatePlanesTable() {
 		Almacenamiento alm=new AlmacenamientoSQL();
 		Plan wow = new PlanWow();
-		//alm.guardarPlan(wow);
+		alm.guardarPlan(wow);
 	}
+	*/
 	
+	/*
 	@Test
 	void testGuardarPlanDTOaPlanes() {
 		Almacenamiento alm=new AlmacenamientoSQL();
-		PlanDTO dto = new PlanDTO("PREPAGO","HorarioReducido+HorarioNormal+HorarioSuperReducido","1.45+0.95+0.70");
+		//PlanDTO dto = new PlanDTO("PREPAGO","HorarioReducido+HorarioNormal+HorarioSuperReducido","1.45+0.95+0.70");
+		PlanDTO dto = new PlanDTO("POSTPAGO","Tarifa","0.99");
 		alm.guardarPlan(dto);
 		assertNull("Llego a Guardar 36 testGuardarPlanDTO", null);
 	}
+	*/
 	
 	
 	@Test
@@ -45,6 +52,9 @@ class SQLTest {
 		assertNull("Llego a Cargar 45 testCargarPlanes", alm.cargarPlanes());
 		
 	}
+	
+	
+	
 	
 	
 }
